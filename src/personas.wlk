@@ -1,11 +1,14 @@
 import criterios.*
 import elementos.*
+import criterioAlimenticio.*
 
 
 class Persona{
 	var property posicion
 	var property criterio
 	const property elementosCercanos=[]
+	var property criterioAlimenticio
+	var property comidasQueIngerio = []
 	
 	method pedirElemento(elemento,emisor){
 		self.validarSiTieneElemento(elemento,emisor)
@@ -26,5 +29,11 @@ class Persona{
 	method recibirElemento(elemento){
 		elementosCercanos.add(elemento)
 	}
+	
+	method aceptaComida(comida) {
+		criterioAlimenticio.puedeComer(comida)
+	}
+	
+	method estaPipon() = self.comidasQueIngerio().any({comida => comida.esPesada()})
 	
 }
